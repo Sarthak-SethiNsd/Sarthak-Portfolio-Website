@@ -1,0 +1,57 @@
+{
+"_instructions": "Add certificate objects to certificates. mediaType may be image or pdf. Put local files in /public/certificates and start mediaPath with /certificates/.",
+
+"skills": {
+"Programming Languages": [
+"Java",
+"Python"
+],
+
+"Core Concepts": [
+  "Data Structures & Algorithms"
+],
+
+"Frameworks": [],
+
+"Technologies": [
+  "Generative AI",
+  "Git & GitHub",
+  "Prompt Engineering",
+  "Open Source"
+]
+
+},
+
+"certificates": [
+{
+"id": "math-for-ml",
+"title": "Mathematics for Machine Learning and Data Science",
+"issuer": "DeepLearning.AI · Coursera",
+"credentialUrl": "https://www.coursera.org/account/accomplishments/specialization/CG5T9FWOBOGH",
+"mediaType": "image",
+"mediaPath": "/certificates/math-for-ml.jpeg",
+"achievement": "Completed a specialization focused on the mathematical foundations of Artificial Intelligence and Machine Learning, covering Linear Algebra, Calculus, Probability, and Statistics used in modern data-driven systems."
+},
+
+{
+  "id": "generative-ai-for-everyone",
+  "title": "Generative AI for Everyone",
+  "issuer": "DeepLearning.AI · Coursera",
+  "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/62FGCBFUC94T",
+  "mediaType": "image",
+  "mediaPath": "/certificates/generative-ai-for-everyone.jpeg",
+  "achievement": "Completed a foundational course on Generative AI, exploring large language models, real-world AI applications, responsible AI practices, and the impact of generative technologies across industries."
+},
+
+{
+  "id": "prompt-engineering-chatgpt",
+  "title": "Prompt Engineering for ChatGPT",
+  "issuer": "Vanderbilt University · Coursera",
+  "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/ALCHZSOSPJOI",
+  "mediaType": "image",
+  "mediaPath": "/certificates/prompt-engineering-chatgpt.jpeg",
+  "achievement": "Completed a practical course on prompt engineering techniques for large language models, learning how to design effective prompts, improve AI responses, and build reliable AI-assisted workflows."
+}
+
+]
+}

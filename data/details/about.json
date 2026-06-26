@@ -1,0 +1,46 @@
+{
+"_instructions": "Edit the values below to personalize the About page. Public media must live inside /public and use a path beginning with /.",
+"name": "Sarthak Sethi",
+"headline": "B.Tech CSE Student at IIIT Vadodara · AI & Software Developer",
+"profileImage": "/images/sarthak-photo.jpeg",
+"profileImageAlt": "Profile photo of Sarthak Sethi",
+
+"educationSummary": "B.Tech Computer Science and Engineering student at IIIT Vadodara with interests in Artificial Intelligence, Machine Learning, and Software Engineering.",
+
+"keySkills": [
+"Java",
+"Python",
+"Data Structures & Algorithms",
+"Machine Learning",
+"Artificial Intelligence"
+],
+
+"introduction": "I am a B.Tech Computer Science and Engineering student at IIIT Vadodara with a strong interest in Artificial Intelligence, Machine Learning, and Software Engineering. I enjoy learning new technologies, solving problems through code, and building projects that help me grow as a developer.",
+
+"careerGoals": "My goal is to become a software engineer and contribute to innovative technology products. I am currently focused on strengthening my programming, problem-solving, and AI skills while preparing for internships and future opportunities in the software industry.",
+
+"personalNote": "I am currently learning Data Structures and Algorithms in Java, exploring Generative AI concepts, completing technical courses, and building projects to improve my practical development skills.",
+
+"socials": [
+{
+"label": "LinkedIn",
+"url": "https://www.linkedin.com/in/sarthak-sethi-849848381/",
+"type": "linkedin"
+},
+{
+"label": "GitHub",
+"url": "https://github.com/Sarthak-SethiNsd",
+"type": "github"
+},
+{
+"label": "Instagram",
+"url": "https://www.instagram.com/sarthak_sethi2409/",
+"type": "instagram"
+},
+{
+"label": "Email",
+"url": "mailto:sarthaksethi31@gmail.com",
+"type": "email"
+}
+]
+}

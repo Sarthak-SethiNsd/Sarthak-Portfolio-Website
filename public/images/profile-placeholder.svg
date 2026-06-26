@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">Profile placeholder</title><desc id="desc">Abstract neon silhouette</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b3444"/><stop offset="1" stop-color="#10152d"/></linearGradient><linearGradient id="glow"><stop stop-color="#45e1d8"/><stop offset="1" stop-color="#ea82cf"/></linearGradient></defs>
+  <rect width="600" height="600" fill="url(#bg)"/><g opacity=".18" stroke="#45e1d8"><path d="M0 90h600M0 180h600M0 270h600M0 360h600M0 450h600M90 0v600M180 0v600M270 0v600M360 0v600M450 0v600"/></g>
+  <circle cx="300" cy="220" r="112" fill="#102d3b" stroke="url(#glow)" stroke-width="7"/><path d="M104 600c15-163 89-246 196-246s181 83 196 246" fill="#102d3b" stroke="url(#glow)" stroke-width="7"/><circle cx="300" cy="300" r="260" fill="none" stroke="#45e1d8" opacity=".22"/>
+</svg>

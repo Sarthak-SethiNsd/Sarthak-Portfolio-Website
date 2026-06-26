@@ -1,0 +1,15 @@
+
+> neon-portfolio@1.0.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.199.1:3000
+✓ Ready in 1103ms
+
+ GET /about 200 in 857ms (next.js: 331ms, application-code: 526ms)
+ GET / 307 in 1751ms (next.js: 1405ms, application-code: 346ms)
+ GET /about 200 in 256ms (next.js: 36ms, application-code: 220ms)
+ GET /education-certifications 200 in 169ms (next.js: 65ms, application-code: 104ms)
+ GET /projects 200 in 137ms (next.js: 67ms, application-code: 70ms)
+ GET /custom-websites 200 in 102ms (next.js: 59ms, application-code: 43ms)

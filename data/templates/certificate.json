@@ -1,0 +1,11 @@
+{
+  "_instructions": "Copy this object into the certificates array in data/certificates/certificates.json. mediaType accepts image or pdf.",
+  "id": "unique-certificate-id",
+  "title": "Certificate Title",
+  "issuer": "Issuing Organization",
+  "date": "2026-01-31",
+  "credentialUrl": "https://example.com/credential",
+  "mediaType": "pdf",
+  "mediaPath": "/certificates/certificate-file.pdf",
+  "achievement": "A short summary of what you completed or achieved."
+}

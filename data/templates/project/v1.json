@@ -1,0 +1,12 @@
+{
+  "_instructions": "Copy this file into a project folder. Rename it v2.json, v3.json, etc. and update version. Files are discovered automatically.",
+  "version": 1,
+  "name": "Version 1 · Release Name",
+  "date": "2026-01-31",
+  "description": "What changed in this version and why?",
+  "features": ["Feature one", "Feature two"],
+  "techStack": ["Technology one", "Technology two"],
+  "lessonsLearned": ["A useful lesson from this release"],
+  "improvements": ["An improvement over the previous version"],
+  "notes": "Optional context for this release."
+}

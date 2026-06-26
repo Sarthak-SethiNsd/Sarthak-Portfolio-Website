@@ -1,0 +1,18 @@
+{
+  "_instructions": "Copy this entire template folder into data/projects/new-project-slug. Keep slug lowercase with hyphens. Replace every example value.",
+  "slug": "new-project-slug",
+  "name": "New Project Name",
+  "tagline": "A short one-sentence card description.",
+  "coverImage": "/projects/new-project-slug/cover.jpg",
+  "coverImageAlt": "Describe the cover image for screen readers",
+  "overview": "A fuller project overview for the dedicated project page.",
+  "latestDemoVideo": {
+    "_instructions": "Use type local with /videos/file.mp4, or external with a YouTube, Vimeo, or other public URL.",
+    "type": "local",
+    "src": "/projects/new-project-slug/videos/latest-demo.mp4",
+    "title": "New Project latest demo"
+  },
+  "githubUrl": "https://github.com/your-name/repository",
+  "futureRoadmap": ["First planned improvement", "Second planned improvement"],
+  "featured": false
+}

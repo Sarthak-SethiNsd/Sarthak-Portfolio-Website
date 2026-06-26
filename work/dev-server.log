@@ -1,0 +1,23 @@
+
+> neon-portfolio@1.0.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.199.1:3000
+✓ Ready in 1509ms
+
+○ Compiling /about ...
+ GET /about 200 in 9.2s (next.js: 8.6s, application-code: 599ms)
+ GET /education-certifications 200 in 1197ms (next.js: 914ms, application-code: 283ms)
+ GET /projects 200 in 1110ms (next.js: 976ms, application-code: 134ms)
+ GET /projects/linkedin-ai-coach 200 in 2.7s (next.js: 2.4s, generate-params: 1450ms, application-code: 338ms)
+ GET /projects/balanced-fitness 200 in 228ms (next.js: 21ms, generate-params: 11ms, application-code: 208ms)
+ GET /custom-websites 200 in 1018ms (next.js: 885ms, application-code: 133ms)
+ GET /custom-websites/birthday 200 in 2.3s (next.js: 2.2s, generate-params: 1090ms, application-code: 126ms)
+ GET /custom-websites/anniversary 200 in 169ms (next.js: 15ms, generate-params: 8ms, application-code: 154ms)
+✓ Compiled in 104ms
+ GET /custom-websites/anniversary 200 in 555ms (next.js: 205ms, generate-params: 18ms, application-code: 350ms)
+ GET /custom-websites/anniversary 200 in 133ms (next.js: 17ms, generate-params: 60µs, application-code: 116ms)
+ GET /about 200 in 351ms (next.js: 28ms, application-code: 323ms)
+[?25h
