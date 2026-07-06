@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Version 1",
+  "date": "July 2026",
+  "description": "Initial public release of Plan Well featuring personalized 7-day Indian meal planning with secure user accounts and cloud-based meal storage.",
+  "features": [
+    "Personalized 7-day Indian meal plans",
+    "State-based meal recommendations",
+    "Vegetarian, Vegetarian + Egg, and Non-Vegetarian meal plans",
+    "User weight-based meal planning",
+    "Customizable meals per day (2-6)",
+    "Google Sign-In authentication",
+    "Automatic user profile creation",
+    "Save generated meal plans",
+    "View previous meal plans",
+    "Delete saved meal plans",
+    "Feedback submission",
+    "Responsive design for desktop and mobile"
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "Firebase Authentication",
+    "Firebase Firestore",
+    "CSS Modules"
+  ],
+  "lessonsLearned": [
+    "Building scalable React applications",
+    "Managing user authentication with Firebase",
+    "Designing a rule-based meal planning system",
+    "Working with Cloud Firestore for persistent data storage",
+    "Creating a responsive user interface"
+  ],
+  "screenshots": [
+  {
+    "title": "About Plan Well",
+    "image": "/images/projects/planwell/about-planwell.jpeg"
+  },
+  {
+    "title": "Saved Meal Plans",
+    "image": "/images/projects/planwell/saved-meal-plans.jpeg"
+  },
+  {
+    "title": "Generated 7-Day Meal Plan",
+    "image": "/images/projects/planwell/generated-meal-plan.jpeg"
+  },
+  {
+    "title": "Weekly Summary & Nutrition Table",
+    "image": "/images/projects/planwell/meal-plan-summary.jpeg"
+  }
+],
+  "improvements": []
+}

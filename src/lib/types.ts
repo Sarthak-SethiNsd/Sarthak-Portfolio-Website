@@ -44,6 +44,7 @@ export interface Project {
   overview: string;
   latestDemoVideo?: DemoVideo;
   githubUrl?: string;
+  liveUrl?: string;
   futureRoadmap: string[];
   featured?: boolean;
 }
@@ -58,4 +59,9 @@ export interface ProjectVersion {
   lessonsLearned: string[];
   improvements: string[];
   notes?: string;
+  screenshots?: {
+  title: string;
+  image: string;
+  alt?: string;
+}[];
 }

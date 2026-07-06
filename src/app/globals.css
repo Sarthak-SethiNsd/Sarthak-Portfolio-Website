@@ -122,8 +122,14 @@ button { font: inherit; }
 .version-columns ul { margin: 0; padding-left: 18px; color: #c2d2d4; line-height: 1.6; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 7px; }
 .tag-list span { padding: 6px 9px; border: 1px solid rgba(69,225,216,.25); border-radius: 6px; color: var(--cyan); font: 11px var(--font-mono); }
+.screenshot-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.screenshot-card { margin: 0; border: 1px solid rgba(126,184,192,.18); border-radius: 12px; background: rgba(0,10,18,.25); overflow: hidden; }
+.screenshot-image { position: relative; aspect-ratio: 16/10; background: rgba(220,245,242,.06); }
+.screenshot-image img { object-fit: cover; }
+.screenshot-card figcaption { padding: 12px 14px 14px; color: #c5d6d7; font-size: 13px; line-height: 1.4; }
 .version-note { padding-top: 16px; border-top: 1px solid rgba(126,184,192,.13); color: var(--muted); font-style: italic; font-size: 13px; }
 .project-bottom-grid { display: grid; grid-template-columns: 1.4fr .6fr; gap: 16px; }
+.project-bottom-grid-single { grid-template-columns: 1fr; }
 .video-frame { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 12px; background: #020a10; }
 .empty-state { min-height: 250px; display: grid; place-items: center; align-content: center; gap: 12px; border: 1px dashed rgba(126,184,192,.25); border-radius: 12px; color: var(--muted); text-align: center; }
 .empty-state svg { color: var(--cyan); }
@@ -158,7 +164,7 @@ button { font: inherit; }
 }
 
 @media (max-width: 540px) {
-  .story-split, .version-columns, .social-list { grid-template-columns: 1fr; }
+  .story-split, .version-columns, .screenshot-gallery, .social-list { grid-template-columns: 1fr; }
   .certificate-card { grid-template-columns: 1fr; }
   .certificate-preview { min-height: 170px; }
   .version-card { grid-template-columns: 1fr; }
@@ -170,4 +176,16 @@ button { font: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+.project-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.project-links .primary-link {
+  min-width: 220px;
+  justify-content: center;
 }
