@@ -10,6 +10,7 @@ const links = [
   { href: "/about", label: "About", short: "01" },
   { href: "/education-certifications", label: "Education & Certifications", short: "02" },
   { href: "/projects", label: "Projects", short: "03" },
+  { href: "/competitive-programming", label: "Competitive Programming", short: "04" },
 ] as const;
 
 export function Sidebar() {
