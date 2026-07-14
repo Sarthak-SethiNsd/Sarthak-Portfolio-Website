@@ -1,0 +1,17 @@
+{
+  "_instructions": "Configure competitive programming platform handles here. Set enabled to true and provide a username to activate a platform. The website reads this file during build and rendering.",
+  "platforms": {
+    "codeforces": {
+      "username": "Sarthak_Devil",
+      "enabled": true
+    },
+    "leetcode": {
+      "username": "0KVODnQEQ7",
+      "enabled": true
+    },
+    "codechef": {
+      "username": "sarthak24sethi",
+      "enabled": true
+    }
+  }
+}
