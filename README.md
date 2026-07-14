@@ -6,7 +6,8 @@ The site is intentionally designed so routine content updates happen in JSON fil
 
 ## What is included
 
-- Three primary sections: About, Education & Certifications, and Projects
+- Four primary sections: About, Education & Certifications, Projects, and Competitive Programming
+- Live Competitive Programming dashboard integrating profile data, ratings, solved counts, and contest statistics from Codeforces, LeetCode, and CodeChef
 - A Projects section that is ready to showcase future AI and software projects
 - Automatically discovered project folders and version files
 - Dated project history support with features, stack, lessons, and improvements
@@ -199,6 +200,7 @@ Answer the setup questions, accept the detected Next.js settings, and keep the p
 ## Files you will edit most often
 
 - `data/details/about.json` - identity, About copy, skills, and social links
+- `data/details/competitive-programming.json` - competitive programming handles and enabled state
 - `data/certificates/certificates.json` - skills and credentials
 - `data/projects/*/project.json` - project cards, overview, latest video, GitHub, and roadmap
 - `data/projects/*/v*.json` - dated version histories
@@ -209,6 +211,7 @@ Answer the setup questions, accept the detected Next.js settings, and keep the p
 ## JSON file reference
 
 - `data/details/about.json`: all About-page text, profile image, and social links
+- `data/details/competitive-programming.json`: platform handles and enablement state for competitive programming integrations
 - `data/certificates/certificates.json`: categorized skill lists and every certificate record
 - `data/templates/project/project.json`: copy-ready project metadata template
 - `data/templates/project/v1.json`: copy-ready version template
