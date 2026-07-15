@@ -15,6 +15,7 @@
 
 "Technologies": [
   "Generative AI",
+  "Large Language Models (LLMs)",
   "Git & GitHub",
   "Prompt Engineering",
   "Open Source"
@@ -23,6 +24,17 @@
 },
 
 "certificates": [
+
+{
+  "id": "generative-ai-with-large-language-models",
+  "title": "Generative AI with Large Language Models",
+  "issuer": "DeepLearning.AI + Amazon Web Services (AWS) | Coursera",
+  "credentialUrl": "https://coursera.org/verify/30O5P1C1Z5BQ",
+  "mediaType": "image",
+  "mediaPath": "/certificates/generative-ai-with-large-language-models.jpeg",
+  "achievement": "Completed an industry-recognized course on Large Language Models (LLMs), covering transformer architectures, foundation models, prompt engineering, fine-tuning concepts, model evaluation, inference, and real-world Generative AI applications using AWS."
+},
+
 {
 "id": "math-for-ml",
 "title": "Mathematics for Machine Learning and Data Science",
