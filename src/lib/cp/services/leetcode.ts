@@ -54,6 +54,7 @@ const LEETCODE_API_URL = "https://leetcode.com/graphql";
  */
 export async function fetchLeetCodeProfile(
   username: string,
+  bypassCache = false,
 ): Promise<LeetCodeProfile> {
   const query = `
     query leetCodeProfile($username: String!) {
@@ -74,6 +75,10 @@ export async function fetchLeetCodeProfile(
     }
   `;
 
+  const fetchOptions = bypassCache
+    ? { cache: "no-store" as const }
+    : { next: { revalidate: 3600 } };
+
   const res = await fetch(LEETCODE_API_URL, {
     method: "POST",
     headers: {
@@ -85,7 +90,7 @@ export async function fetchLeetCodeProfile(
       query,
       variables: { username },
     }),
-    next: { revalidate: 3600 },
+    ...fetchOptions,
   });
 
   if (!res.ok) {

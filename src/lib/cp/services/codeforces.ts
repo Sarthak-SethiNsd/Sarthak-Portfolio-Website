@@ -64,18 +64,21 @@ const CF_API_BASE = "https://codeforces.com/api";
  */
 export async function fetchCodeforcesProfile(
   username: string,
+  bypassCache = false,
 ): Promise<CodeforcesProfile> {
+  const fetchOptions = bypassCache
+    ? { cache: "no-store" as const }
+    : { next: { revalidate: 3600 } };
+
   const [infoRes, statusRes, ratingRes] = await Promise.all([
-    fetch(`${CF_API_BASE}/user.info?handles=${encodeURIComponent(username)}`, {
-      next: { revalidate: 3600 },
-    }),
+    fetch(`${CF_API_BASE}/user.info?handles=${encodeURIComponent(username)}`, fetchOptions),
     fetch(
       `${CF_API_BASE}/user.status?handle=${encodeURIComponent(username)}&from=1&count=10000`,
-      { next: { revalidate: 3600 } },
+      fetchOptions,
     ),
     fetch(
       `${CF_API_BASE}/user.rating?handle=${encodeURIComponent(username)}`,
-      { next: { revalidate: 3600 } },
+      fetchOptions,
     ),
   ]);
 

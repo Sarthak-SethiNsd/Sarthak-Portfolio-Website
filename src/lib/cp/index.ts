@@ -17,6 +17,7 @@ import type {
 import { fetchCodeforcesProfile } from "@/lib/cp/services/codeforces";
 import { fetchLeetCodeProfile } from "@/lib/cp/services/leetcode";
 import { fetchCodeChefProfile } from "@/lib/cp/services/codechef";
+import { cpStore } from "@/lib/cp/store";
 
 /* ---------- Config reader ---------- */
 
@@ -46,7 +47,17 @@ async function readConfig(): Promise<CompetitiveProgrammingConfig | null> {
  * It returns a fully resolved object – the client component
  * never needs to make its own network requests.
  */
-export async function getCompetitiveProgrammingData(): Promise<CompetitiveProgrammingData> {
+export async function getCompetitiveProgrammingData(
+  bypassCache = false,
+): Promise<CompetitiveProgrammingData> {
+  // 1. If not bypassing, check if we have cached data in the store
+  if (!bypassCache) {
+    const cached = await cpStore.get();
+    if (cached && cached.data) {
+      return cached.data;
+    }
+  }
+
   const config = await readConfig();
 
   const empty: CompetitiveProgrammingData = {
@@ -76,7 +87,7 @@ export async function getCompetitiveProgrammingData(): Promise<CompetitiveProgra
 
   if (platforms.codeforces.enabled && platforms.codeforces.username) {
     tasks.push(
-      fetchCodeforcesProfile(platforms.codeforces.username)
+      fetchCodeforcesProfile(platforms.codeforces.username, bypassCache)
         .then((profile) => {
           result.codeforces = profile;
         })
@@ -91,7 +102,7 @@ export async function getCompetitiveProgrammingData(): Promise<CompetitiveProgra
 
   if (platforms.leetcode.enabled && platforms.leetcode.username) {
     tasks.push(
-      fetchLeetCodeProfile(platforms.leetcode.username)
+      fetchLeetCodeProfile(platforms.leetcode.username, bypassCache)
         .then((profile) => {
           result.leetcode = profile;
         })
@@ -106,7 +117,7 @@ export async function getCompetitiveProgrammingData(): Promise<CompetitiveProgra
 
   if (platforms.codechef.enabled && platforms.codechef.username) {
     tasks.push(
-      fetchCodeChefProfile(platforms.codechef.username)
+      fetchCodeChefProfile(platforms.codechef.username, bypassCache)
         .then((profile) => {
           result.codechef = profile;
         })
@@ -122,6 +133,16 @@ export async function getCompetitiveProgrammingData(): Promise<CompetitiveProgra
   await Promise.all(tasks);
 
   result.fetchedAt = new Date().toISOString();
+
+  // If we loaded data on initial load (no cache existed yet), seed the cache
+  if (!bypassCache) {
+    const hasErrors = Object.keys(result.errors).length > 0;
+    await cpStore.set({
+      // Only set cooldown timestamp if there were no errors
+      lastSuccessTimestamp: hasErrors ? 0 : Date.now(),
+      data: result,
+    });
+  }
 
   return result;
 }

@@ -3,6 +3,8 @@
 import { Panel } from "@/components/Panel";
 import { ExternalLink } from "lucide-react";
 import type { CompetitiveProgrammingData } from "@/lib/cp/types";
+import { refreshCPData } from "@/lib/cp/actions";
+import { useState, useEffect } from "react";
 
 /* ------------------------------------------------------------------ */
 /*  Helper: format an ISO date string to a human-readable timestamp   */
@@ -35,8 +37,85 @@ interface CompetitiveProgrammingClientProps {
 /* ------------------------------------------------------------------ */
 
 export function CompetitiveProgrammingClient({
-  data,
+  data: initialData,
 }: CompetitiveProgrammingClientProps) {
+  const [cpData, setCpData] = useState<CompetitiveProgrammingData>(initialData);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Initialize cooldown dynamically from the initial fetchedAt timestamp
+  const [cooldownRemainingMs, setCooldownRemainingMs] = useState<number>(() => {
+    const hasErrors = Object.keys(initialData.errors).length > 0;
+    if (!hasErrors && initialData.fetchedAt) {
+      const fetchedTime = new Date(initialData.fetchedAt).getTime();
+      const elapsed = Date.now() - fetchedTime;
+      const COOLDOWN_DURATION = 5 * 60 * 1000;
+      return elapsed < COOLDOWN_DURATION ? COOLDOWN_DURATION - elapsed : 0;
+    }
+    return 0;
+  });
+
+  // Set up timer for cooldown tick
+  useEffect(() => {
+    if (cooldownRemainingMs <= 0) return;
+
+    const timer = setInterval(() => {
+      setCooldownRemainingMs((prev) => {
+        if (prev <= 1000) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1000;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [cooldownRemainingMs]);
+
+  const handleRefresh = async () => {
+    if (isRefreshing || cooldownRemainingMs > 0) return;
+
+    setIsRefreshing(true);
+    setErrorMsg(null);
+
+    try {
+      const res = await refreshCPData();
+      if (res.cooldownActive && res.remainingMs) {
+        setCooldownRemainingMs(res.remainingMs);
+        if (res.data) {
+          setCpData(res.data);
+        }
+      } else if (res.success && res.data) {
+        setCpData(res.data);
+        setCooldownRemainingMs(5 * 60 * 1000); // 5 minutes cooldown
+        setErrorMsg(null);
+      } else {
+        if (res.data) {
+          setCpData(res.data);
+        }
+        setErrorMsg(res.error || "An error occurred during refresh.");
+      }
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Failed to refresh data.");
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const formatCooldown = (ms: number): string => {
+    const totalSeconds = Math.ceil(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    if (minutes > 0) {
+      return `${minutes} minute${minutes !== 1 ? "s" : ""} ${seconds} second${seconds !== 1 ? "s" : ""}`;
+    }
+    return `${seconds} second${seconds !== 1 ? "s" : ""}`;
+  };
+
+  // Map state to the existing code's expected variable name
+  const data = cpData;
+
   /* Derive summary stats from available platform data */
   const totalSolved =
     (data.codeforces?.totalSolved ?? 0) +
@@ -100,7 +179,7 @@ export function CompetitiveProgrammingClient({
               {enabledNames || "None"}
             </div>
           </div>
-          <div className="cp-summary-stat synced">
+          <div className="cp-summary-stat synced" style={{ position: "relative" }}>
             <div className="cp-summary-label">Last Synced</div>
             <div
               className="cp-summary-value"
@@ -112,6 +191,88 @@ export function CompetitiveProgrammingClient({
             >
               {formatTimestamp(data.fetchedAt)}
             </div>
+            <div style={{ marginTop: "12px" }}>
+              <button
+                className="primary-link"
+                style={{
+                  padding: "6px 12px",
+                  fontSize: "12px",
+                  border: "1px solid rgba(69,225,216,.3)",
+                  borderRadius: "6px",
+                  background: "rgba(69,225,216,.04)",
+                  cursor: isRefreshing || cooldownRemainingMs > 0 ? "not-allowed" : "pointer",
+                  opacity: isRefreshing || cooldownRemainingMs > 0 ? 0.6 : 1,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  color: "var(--cyan)",
+                  fontFamily: "var(--font-mono)",
+                }}
+                disabled={isRefreshing || cooldownRemainingMs > 0}
+                onClick={handleRefresh}
+              >
+                {isRefreshing ? (
+                  <>
+                    <svg
+                      style={{
+                        animation: "spin 1s linear infinite",
+                        width: "12px",
+                        height: "12px",
+                      }}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        style={{ opacity: 0.25 }}
+                      ></circle>
+                      <path
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        style={{ opacity: 0.75 }}
+                      ></path>
+                    </svg>
+                    Refreshing...
+                  </>
+                ) : (
+                  "Refresh Data"
+                )}
+              </button>
+            </div>
+            {cooldownRemainingMs > 0 && (
+              <div
+                style={{
+                  fontSize: "11px",
+                  color: "#888",
+                  marginTop: "8px",
+                  fontFamily: "var(--font-mono)",
+                  lineHeight: "1.4",
+                }}
+              >
+                Data recently refreshed. Retry in{" "}
+                <span style={{ color: "var(--cyan)" }}>
+                  {formatCooldown(cooldownRemainingMs)}
+                </span>
+                .
+              </div>
+            )}
+            {errorMsg && (
+              <div
+                style={{
+                  fontSize: "11px",
+                  color: "#ff375f",
+                  marginTop: "8px",
+                  fontFamily: "var(--font-mono)",
+                  lineHeight: "1.4",
+                }}
+              >
+                ⚠ {errorMsg}
+              </div>
+            )}
           </div>
         </div>
       </Panel>

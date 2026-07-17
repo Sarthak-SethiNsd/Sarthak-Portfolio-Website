@@ -15,14 +15,19 @@ const CODECHEF_BASE_URL = "https://www.codechef.com/users";
  */
 export async function fetchCodeChefProfile(
   username: string,
+  bypassCache = false,
 ): Promise<CodeChefProfile> {
   const url = `${CODECHEF_BASE_URL}/${encodeURIComponent(username)}`;
+
+  const fetchOptions = bypassCache
+    ? { cache: "no-store" as const }
+    : { next: { revalidate: 3600 } };
 
   const res = await fetch(url, {
     headers: {
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     },
-    next: { revalidate: 3600 },
+    ...fetchOptions,
   });
 
   if (!res.ok) {
