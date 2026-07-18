@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "name": "Version 2",
+  "date": "July 2026",
+  "description": "Introduced optional protein supplement support and professional PDF exports, enabling more personalized meal planning and downloadable nutrition reports.",
+  "features": [
+    "Optional protein supplement support",
+    "Support for Protein Powder and Protein Bar",
+    "Manual nutrition entry for supplements",
+    "Per serving and per 100 g supplement formats",
+    "Automatic meal plan adjustment for supplement nutrition",
+    "Professional PDF meal plan downloads",
+    "Download PDF immediately after generating a meal plan",
+    "Download PDF from previously saved meal plans",
+    "Cleaner meal plan results interface"
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "jsPDF",
+    "CSS Modules"
+  ],
+  "lessonsLearned": [
+    "Designing flexible nutrition input workflows",
+    "Balancing meal planning logic with optional supplement data",
+    "Generating professional PDF reports for web applications",
+    "Improving user experience through cleaner interface design",
+    "Extending an existing application while maintaining modular architecture"
+  ],
+  "screenshots": [
+    {
+      "title": "Protein Supplement Support",
+      "image": "/images/projects/planwell/protein-supplement.jpeg"
+    },
+    {
+      "title": "Professional PDF Export",
+      "image": "/images/projects/planwell/pdf.jpeg"
+    }
+  ],
+  "improvements": []
+}

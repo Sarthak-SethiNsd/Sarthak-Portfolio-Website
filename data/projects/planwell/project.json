@@ -4,7 +4,7 @@
   "tagline": "A personalized 7-day Indian meal planning web application.",
   "coverImage": "/images/projects/planwell/cover.jpeg",
   "coverImageAlt": "Plan Well Homepage",
-  "overview": "Plan Well is a responsive web application that generates personalized 7-day Indian meal plans based on the user's weight, state, diet preference, and preferred number of meals per day. The application also allows users to securely sign in with Google, save generated meal plans, revisit previous plans, delete saved plans, and submit feedback through an intuitive interface.",
+  "overview": "Plan Well is a responsive web application that generates personalized 7-day Indian meal plans based on the user's weight, state, diet preference, preferred number of meals per day, and optional protein supplement information. Users can securely sign in with Google to save, revisit, manage, and download their meal plans as professionally formatted PDF reports, providing a convenient and personalized nutrition planning experience.",
   "githubUrl": "https://github.com/Sarthak-SethiNsd/plan-well",
   "liveUrl": "https://plan-well.vercel.app",
   "featured": true,
