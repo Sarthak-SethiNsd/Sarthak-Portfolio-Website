@@ -54,7 +54,12 @@ export async function getCompetitiveProgrammingData(
   if (!bypassCache) {
     const cached = await cpStore.get();
     if (cached && cached.data) {
-      return cached.data;
+      // Check if cache is fresh enough (5 minutes)
+      const age = Date.now() - cached.lastSuccessTimestamp;
+      if (age < 5 * 60 * 1000) {
+        return cached.data;
+      }
+      // If cache is stale, fall through to fetch fresh data
     }
   }
 
