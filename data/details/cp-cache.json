@@ -1,5 +1,5 @@
 {
-  "lastSuccessTimestamp": 1784527183808,
+  "lastSuccessTimestamp": 1785126894902,
   "data": {
     "codeforces": {
       "username": "Sarthak_Devil",
@@ -9,7 +9,7 @@
       "highestRank": "newbie",
       "totalSolved": 122,
       "profileUrl": "https://codeforces.com/profile/Sarthak_Devil",
-      "lastUpdated": "2026-07-20T05:59:44.425Z",
+      "lastUpdated": "2026-07-27T04:34:53.156Z",
       "contestsAttended": 12
     },
     "leetcode": {
@@ -20,17 +20,17 @@
       "hardSolved": 1,
       "contestRating": null,
       "profileUrl": "https://leetcode.com/u/0KVODnQEQ7",
-      "lastUpdated": "2026-07-20T05:59:44.365Z",
-      "contestsAttended": 3
+      "lastUpdated": "2026-07-27T04:34:53.357Z",
+      "contestsAttended": 4
     },
     "codechef": {
       "username": "sarthak24sethi",
       "currentRating": 1373,
-      "highestRating": 1373,
+      "highestRating": 1375,
       "stars": "1★",
       "globalRank": "49904",
       "profileUrl": "https://www.codechef.com/users/sarthak24sethi",
-      "lastUpdated": "2026-07-20T05:59:44.988Z",
+      "lastUpdated": "2026-07-27T04:34:54.902Z",
       "contestsAttended": 9
     },
     "enabledPlatforms": [
@@ -39,6 +39,6 @@
       "codechef"
     ],
     "errors": {},
-    "fetchedAt": "2026-07-20T05:59:44.989Z"
+    "fetchedAt": "2026-07-27T04:34:54.902Z"
   }
 }
