@@ -1,0 +1,9 @@
+{
+  "slug": "flow_ai",
+  "name": "FLOW.AI",
+  "tagline": "Interactive Virtual Yoga Coach",
+  "coverImage": "/images/projects/flow.ai/cover-page.jpeg",
+  "overview": "FLOW.AI is a responsive web application that helps users learn and practice yoga through interactive guidance and real-time posture analysis. Users can explore yoga poses in Watch & Learn mode with animated visual guidance and spoken instructions, or switch to Practice Mode for live webcam-based posture correction, voice feedback, and smart hold timers. The entire experience runs locally in the browser, providing a privacy-first yoga coaching experience without requiring user accounts or cloud processing.",
+  "githubUrl": "https://github.com/Sarthak-SethiNsd/Yoga-Project",
+  "liveUrl": "https://flow-ai-gray.vercel.app/"
+}
