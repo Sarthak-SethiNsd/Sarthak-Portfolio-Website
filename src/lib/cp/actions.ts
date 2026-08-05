@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { getCompetitiveProgrammingData } from "./index";
 import { cpStore } from "./store";
 import type { CompetitiveProgrammingData } from "./types";
@@ -63,6 +64,8 @@ export async function refreshCPData(): Promise<RefreshResult> {
         error: "Some platforms failed to refresh. Cooldown was not started.",
       };
     }
+
+    revalidatePath("/competitive-programming");
 
     return {
       success: true,
