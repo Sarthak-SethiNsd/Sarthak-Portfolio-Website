@@ -1,4 +1,4 @@
-import { ArrowLeft, CalendarDays, Github } from "lucide-react";
+import { ArrowLeft, CalendarDays, Github, Globe } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -262,6 +262,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           ) : null}
         </div>
       ) : null}
+
+      <section className="project-links-section" aria-label="Project links">
+        <Panel title="Project links">
+          <div className="project-links">
+            {project.githubUrl ? (
+              <a className="primary-link" href={project.githubUrl} rel="noreferrer" target="_blank">
+                <Github size={18} /> View GitHub repository
+              </a>
+            ) : null}
+
+            {project.liveUrl ? (
+              <a className="primary-link" href={project.liveUrl} rel="noreferrer" target="_blank">
+                <Globe size={18} /> View Live Website
+              </a>
+            ) : null}
+
+            {!project.githubUrl && !project.liveUrl ? (
+              <p className="project-links-unavailable">Project links are not available yet.</p>
+            ) : null}
+          </div>
+        </Panel>
+      </section>
     </>
   );
 }
