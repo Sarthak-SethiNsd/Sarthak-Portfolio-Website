@@ -44,20 +44,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const showProjectResources = Boolean(
     project.latestDemoVideo ||
-      project.futureRoadmap.length ||
-      project.githubUrl ||
-      project.liveUrl
+      project.futureRoadmap.length
   );
 
   const resourcePanelCount =
     Number(Boolean(project.latestDemoVideo)) +
-    Number(
-      Boolean(
-        project.futureRoadmap.length ||
-          project.githubUrl ||
-          project.liveUrl
-      )
-    );
+    Number(Boolean(project.futureRoadmap.length));
 
   return (
     <>
@@ -214,50 +206,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </Panel>
           ) : null}
 
-          {project.futureRoadmap.length ||
-          project.githubUrl ||
-          project.liveUrl ? (
-            <Panel
-              title={
-                project.futureRoadmap.length
-                  ? "Future roadmap"
-                  : "Project links"
-              }
-            >
-              {project.futureRoadmap.length ? (
-                <ul className="roadmap-list">
-                  {project.futureRoadmap.map((item, index) => (
-                    <li key={item}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-
-              <div className="project-links">
-                {project.githubUrl ? (
-                  <a
-                    className="primary-link"
-                    href={project.githubUrl}
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <Github size={18} /> View GitHub repository
-                  </a>
-                ) : null}
-
-                {project.liveUrl ? (
-                  <a
-                    className="primary-link"
-                    href={project.liveUrl}
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    🌐 View Live Website
-                  </a>
-                ) : null}
-              </div>
+          {project.futureRoadmap.length ? (
+            <Panel title="Future roadmap">
+              <ul className="roadmap-list">
+                {project.futureRoadmap.map((item, index) => (
+                  <li key={item}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </Panel>
           ) : null}
         </div>
