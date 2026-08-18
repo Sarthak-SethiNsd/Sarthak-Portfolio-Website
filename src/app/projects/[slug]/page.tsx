@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     Number(Boolean(project.futureRoadmap.length));
 
   return (
-    <>
+    <div className="project-detail-page">
       <Link className="back-link" href="/projects">
         <ArrowLeft size={16} /> Project archive
       </Link>
@@ -242,6 +242,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </Panel>
       </section>
-    </>
+    </div>
   );
 }
