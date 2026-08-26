@@ -1,0 +1,12 @@
+{
+  "slug": "tourism",
+  "name": "India Tourism Discovery",
+  "tagline": "A responsive web application for discovering and planning visits to destinations across India.",
+  "coverImage": "/images/projects/tourism/cover.jpeg",
+  "coverImageAlt": "India Tourism Discovery welcome screen",
+  "overview": "India Tourism Discovery is a responsive tourism web application for discovering, exploring, comparing, and planning visits to destinations across India. Visitors can browse a curated catalogue by state, district, category, budget, rating, and opening status, then use search, sorting, distance-aware discovery, and detailed destination pages to make informed choices. Google and email/password authentication support account-based saved places and search history, while guest activity is handled locally in the browser. Wishlist, visited places, collections, trip planning, recently viewed places, and three-place comparison make the experience practical for real travel planning. Mappls REST APIs power optional place and routing services, Open-Meteo provides current weather, and Firebase Authentication with Cloud Firestore supports secure, persistent travel data. Built with Next.js 15, React 19, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, Lucide Icons, and Zustand, the interface is optimized for desktop and mobile use.",
+  "githubUrl": "https://github.com/Sarthak-SethiNsd/Tourism-Project",
+  "liveUrl": "https://tourism-project-rose-eta.vercel.app/",
+  "featured": true,
+  "futureRoadmap": []
+}

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "Version 1",
+  "date": "August 2026",
+  "description": "Initial release of India Tourism Discovery, providing state and district-led destination exploration, flexible travel filters, personal planning tools, and optional Mappls-powered place services in a responsive experience.",
+  "features": [
+    "Browse destinations by state, union territory, district, category, budget, rating, and opening status",
+    "Search and sort places by rating, distance, popularity, recency, or name",
+    "Distance-aware discovery when browser location access is available",
+    "Detailed destination pages with photos, ratings, opening information, reviews, nearby attractions, weather, and route estimates",
+    "Mappls place search, autocomplete, geocoding, routing, and navigation links",
+    "Compare up to three destinations side by side",
+    "Saved places, wishlist, visited places, recently viewed destinations, collections, trip planning, and search history",
+    "Google and email/password authentication with guest local-storage support",
+    "Responsive desktop and mobile interface"
+  ],
+  "techStack": [
+    "Next.js 15",
+    "React 19",
+    "TypeScript",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Framer Motion",
+    "Lucide Icons",
+    "Zustand",
+    "Firebase Authentication",
+    "Firebase Cloud Firestore",
+    "Mappls REST APIs",
+    "Open-Meteo"
+  ],
+  "lessonsLearned": [
+    "Organizing a large discovery experience around state, district, and flexible filtering workflows",
+    "Combining guest-local and account-backed travel data flows",
+    "Integrating mapping, routing, and weather services while retaining a useful local catalogue",
+    "Designing responsive tools for comparing, saving, and planning destination visits"
+  ],
+  "improvements": [],
+  "screenshots": [
+    {
+      "title": "State selection onboarding",
+      "image": "/images/projects/tourism/state-selection.jpeg",
+      "alt": "India Tourism Discovery state and union territory selection screen"
+    },
+    {
+      "title": "District selection",
+      "image": "/images/projects/tourism/district-selection.jpeg",
+      "alt": "India Tourism Discovery district selection screen for Rajasthan"
+    },
+    {
+      "title": "Travel tools menu",
+      "image": "/images/projects/tourism/travel-menu.jpeg",
+      "alt": "India Tourism Discovery menu with compare, trip planner, collections, wishlist, and visited places"
+    },
+    {
+      "title": "Rajasthan discovery results",
+      "image": "/images/projects/tourism/rajasthan-discovery.jpeg",
+      "alt": "India Tourism Discovery Rajasthan destination cards"
+    },
+    {
+      "title": "Categories and discovery filters",
+      "image": "/images/projects/tourism/filters-and-categories.jpeg",
+      "alt": "India Tourism Discovery travel categories and filtering controls"
+    }
+  ]
+}
