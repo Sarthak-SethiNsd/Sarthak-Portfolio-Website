@@ -85,12 +85,21 @@ export async function fetchCodeChefProfile(
     }
   }
 
+  /* 6. Extract Total Problems Solved */
+  const totalSolvedRegex =
+    /<h3>\s*Total Problems Solved:\s*(\d+)\s*<\/h3>/i;
+  const totalSolvedMatch =
+    html.match(totalSolvedRegex) ??
+    html.match(/Total Problems Solved:\s*(\d+)/i);
+  const totalSolved = totalSolvedMatch ? parseInt(totalSolvedMatch[1], 10) : 0;
+
   return {
     username,
     currentRating,
     highestRating,
     stars,
     globalRank,
+    totalSolved,
     profileUrl: url,
     lastUpdated: new Date().toISOString(),
     contestsAttended,

@@ -57,6 +57,8 @@ export interface CodeChefProfile {
   highestRating: number;
   stars: string;
   globalRank: string;
+  /** Total number of problems solved on CodeChef (scraped from profile page). */
+  totalSolved: number;
   profileUrl: string;
   lastUpdated: string;
   contestsAttended: number;

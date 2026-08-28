@@ -119,8 +119,10 @@ export function CompetitiveProgrammingClient({
   /* Derive summary stats from available platform data */
   const totalSolved =
     (data.codeforces?.totalSolved ?? 0) +
-    (data.leetcode?.totalSolved ?? 0);
-  const hasSolvedData = Boolean(data.codeforces || data.leetcode);
+    (data.leetcode?.totalSolved ?? 0) +
+    (data.codechef?.totalSolved ?? 0);
+  const hasSolvedData = Boolean(data.codeforces || data.leetcode || data.codechef);
+
 
   const totalContests =
     (data.codeforces?.contestsAttended ?? 0) +
@@ -534,6 +536,12 @@ export function CompetitiveProgrammingClient({
           <div className="cp-card-body">
             <div className="cp-stats-list">
               <div className="cp-stat-row">
+                <span className="cp-stat-label">Total Problems Solved</span>
+                <span className="cp-stat-value">
+                  {data.codechef?.totalSolved ?? "--"}
+                </span>
+              </div>
+              <div className="cp-stat-row">
                 <span className="cp-stat-label">Current Rating</span>
                 <span className="cp-stat-value">
                   {data.codechef?.currentRating ?? "--"}
@@ -564,6 +572,7 @@ export function CompetitiveProgrammingClient({
                 </span>
               </div>
             </div>
+
 
             {data.errors.codechef ? (
               <div className="fallback-note" style={{ marginBottom: "12px", fontSize: "12px", color: "#ff375f" }}>
