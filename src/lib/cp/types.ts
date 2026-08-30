@@ -10,17 +10,25 @@ export interface PlatformConfig {
   enabled: boolean;
 }
 
+/** Manually maintained GFG statistic; GFG has no reliable integration here. */
+export interface GFGConfig extends PlatformConfig {
+  /** Update this value whenever another GFG problem is solved. */
+  totalSolved: number | null;
+  profileUrl: string;
+}
+
 /** Root shape of the `data/details/competitive-programming.json` file. */
 export interface CompetitiveProgrammingConfig {
   platforms: {
     codeforces: PlatformConfig;
     leetcode: PlatformConfig;
     codechef: PlatformConfig;
+    gfg: GFGConfig;
   };
 }
 
 /** The platform identifier union – used as key everywhere. */
-export type PlatformId = "codeforces" | "leetcode" | "codechef";
+export type PlatformId = "codeforces" | "leetcode" | "codechef" | "gfg";
 
 /* ------------------------------------------------------------------ */
 /*  UI-Facing Profile Shapes (per platform)                           */
@@ -64,6 +72,13 @@ export interface CodeChefProfile {
   contestsAttended: number;
 }
 
+export interface GFGProfile {
+  username: string;
+  /** Manually maintained in competitive-programming.json. */
+  totalSolved: number | null;
+  profileUrl: string;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Aggregated result passed from server → client component           */
 /* ------------------------------------------------------------------ */
@@ -72,6 +87,7 @@ export interface CompetitiveProgrammingData {
   codeforces: CodeforcesProfile | null;
   leetcode: LeetCodeProfile | null;
   codechef: CodeChefProfile | null;
+  gfg: GFGProfile | null;
   /** Platforms whose config is enabled. */
   enabledPlatforms: PlatformId[];
   /** Errors keyed by platform id (null when no error). */

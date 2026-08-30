@@ -120,8 +120,11 @@ export function CompetitiveProgrammingClient({
   const totalSolved =
     (data.codeforces?.totalSolved ?? 0) +
     (data.leetcode?.totalSolved ?? 0) +
-    (data.codechef?.totalSolved ?? 0);
-  const hasSolvedData = Boolean(data.codeforces || data.leetcode || data.codechef);
+    (data.codechef?.totalSolved ?? 0) +
+    (data.gfg?.totalSolved ?? 0);
+  const hasSolvedData = Boolean(
+    data.codeforces || data.leetcode || data.codechef || data.gfg,
+  );
 
 
   const totalContests =
@@ -136,6 +139,7 @@ export function CompetitiveProgrammingClient({
         codeforces: "Codeforces",
         leetcode: "LeetCode",
         codechef: "CodeChef",
+        gfg: "GeeksforGeeks",
       };
       return names[id] ?? id;
     })
@@ -583,6 +587,56 @@ export function CompetitiveProgrammingClient({
             <a
               className="primary-link cp-action-btn-active"
               href={data.codechef?.profileUrl ?? "https://codechef.com/"}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Profile <ExternalLink size={13} />
+            </a>
+          </div>
+        </Panel>
+
+        {/* GeeksforGeeks Card */}
+        <Panel className="cp-card">
+          <div className="cp-card-header">
+            <div className="cp-logo-container" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="#2f8d46"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  filter: "drop-shadow(0 0 6px rgba(47,141,70,0.5))",
+                }}
+              >
+                <path d="M3 8h8a4 4 0 1 1-4 4H3" />
+                <path d="M21 8h-8a4 4 0 1 0 4 4h4" />
+              </svg>
+            </div>
+            <div className="cp-platform-info">
+              <h3 className="cp-platform-name">GeeksforGeeks</h3>
+              <span className="cp-username">
+                {data.gfg?.username ?? "Loading..."}
+              </span>
+            </div>
+          </div>
+
+          <div className="cp-card-body">
+            <div className="cp-stats-list">
+              <div className="cp-stat-row">
+                <span className="cp-stat-label">Total Problems Solved</span>
+                <span className="cp-stat-value">
+                  {data.gfg?.totalSolved ?? "--"}
+                </span>
+              </div>
+            </div>
+
+            <a
+              className="primary-link cp-action-btn-active"
+              href={data.gfg?.profileUrl ?? "https://www.geeksforgeeks.org/"}
               target="_blank"
               rel="noreferrer"
             >

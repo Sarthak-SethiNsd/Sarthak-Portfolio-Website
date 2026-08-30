@@ -38,6 +38,25 @@ async function readConfig(): Promise<CompetitiveProgrammingConfig | null> {
   }
 }
 
+function getEnabledPlatforms(
+  config: CompetitiveProgrammingConfig,
+): PlatformId[] {
+  return (Object.keys(config.platforms) as PlatformId[]).filter(
+    (id) => config.platforms[id].enabled && config.platforms[id].username,
+  );
+}
+
+function getConfiguredGFG(config: CompetitiveProgrammingConfig | null) {
+  const gfg = config?.platforms.gfg;
+  return gfg?.enabled && gfg.username
+    ? {
+        username: gfg.username,
+        totalSolved: gfg.totalSolved,
+        profileUrl: gfg.profileUrl,
+      }
+    : null;
+}
+
 /* ---------- Public API ---------- */
 
 /**
@@ -50,6 +69,8 @@ async function readConfig(): Promise<CompetitiveProgrammingConfig | null> {
 export async function getCompetitiveProgrammingData(
   bypassCache = false,
 ): Promise<CompetitiveProgrammingData> {
+  const config = await readConfig();
+
   // 1. If not bypassing, check if we have cached data in the store
   if (!bypassCache) {
     const cached = await cpStore.get();
@@ -57,18 +78,23 @@ export async function getCompetitiveProgrammingData(
       // Check if cache is fresh enough (5 minutes)
       const age = Date.now() - cached.lastSuccessTimestamp;
       if (age < 5 * 60 * 1000) {
-        return cached.data;
+        return config
+          ? {
+              ...cached.data,
+              gfg: getConfiguredGFG(config),
+              enabledPlatforms: getEnabledPlatforms(config),
+            }
+          : cached.data;
       }
       // If cache is stale, fall through to fetch fresh data
     }
   }
 
-  const config = await readConfig();
-
   const empty: CompetitiveProgrammingData = {
     codeforces: null,
     leetcode: null,
     codechef: null,
+    gfg: null,
     enabledPlatforms: [],
     errors: {},
     fetchedAt: new Date().toISOString(),
@@ -78,14 +104,16 @@ export async function getCompetitiveProgrammingData(
 
   const { platforms } = config;
 
-  const enabledPlatforms: PlatformId[] = (
-    Object.keys(platforms) as PlatformId[]
-  ).filter((id) => platforms[id].enabled && platforms[id].username);
+  const enabledPlatforms = getEnabledPlatforms(config);
 
   const result: CompetitiveProgrammingData = {
     ...empty,
     enabledPlatforms,
   };
+
+  // GFG's solved count is deliberately maintained in the local config rather
+  // than fetched from an undocumented or fragile external source.
+  result.gfg = getConfiguredGFG(config);
 
   /* Fetch all enabled platforms in parallel */
   const tasks: Promise<void>[] = [];
