@@ -10,10 +10,10 @@ export interface PlatformConfig {
   enabled: boolean;
 }
 
-/** Manually maintained GFG statistic; GFG has no reliable integration here. */
+/** GFG profile metadata configured locally; solved data is fetched live. */
 export interface GFGConfig extends PlatformConfig {
-  /** Update this value whenever another GFG problem is solved. */
-  totalSolved: number | null;
+  /** Public profile name shown in the platform card. */
+  displayName: string;
   profileUrl: string;
 }
 
@@ -74,8 +74,8 @@ export interface CodeChefProfile {
 
 export interface GFGProfile {
   username: string;
-  /** Manually maintained in competitive-programming.json. */
-  totalSolved: number | null;
+  displayName: string;
+  totalSolved: number;
   profileUrl: string;
 }
 

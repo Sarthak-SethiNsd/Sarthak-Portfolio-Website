@@ -619,7 +619,7 @@ export function CompetitiveProgrammingClient({
             <div className="cp-platform-info">
               <h3 className="cp-platform-name">GeeksforGeeks</h3>
               <span className="cp-username">
-                {data.gfg?.username ?? "Loading..."}
+                {data.gfg?.displayName ?? "Loading..."}
               </span>
             </div>
           </div>

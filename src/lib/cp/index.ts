@@ -17,6 +17,7 @@ import type {
 import { fetchCodeforcesProfile } from "@/lib/cp/services/codeforces";
 import { fetchLeetCodeProfile } from "@/lib/cp/services/leetcode";
 import { fetchCodeChefProfile } from "@/lib/cp/services/codechef";
+import { fetchGFGProfile } from "@/lib/cp/services/gfg";
 import { cpStore } from "@/lib/cp/store";
 
 /* ---------- Config reader ---------- */
@@ -46,17 +47,6 @@ function getEnabledPlatforms(
   );
 }
 
-function getConfiguredGFG(config: CompetitiveProgrammingConfig | null) {
-  const gfg = config?.platforms.gfg;
-  return gfg?.enabled && gfg.username
-    ? {
-        username: gfg.username,
-        totalSolved: gfg.totalSolved,
-        profileUrl: gfg.profileUrl,
-      }
-    : null;
-}
-
 /* ---------- Public API ---------- */
 
 /**
@@ -78,13 +68,7 @@ export async function getCompetitiveProgrammingData(
       // Check if cache is fresh enough (5 minutes)
       const age = Date.now() - cached.lastSuccessTimestamp;
       if (age < 5 * 60 * 1000) {
-        return config
-          ? {
-              ...cached.data,
-              gfg: getConfiguredGFG(config),
-              enabledPlatforms: getEnabledPlatforms(config),
-            }
-          : cached.data;
+        return cached.data;
       }
       // If cache is stale, fall through to fetch fresh data
     }
@@ -110,10 +94,6 @@ export async function getCompetitiveProgrammingData(
     ...empty,
     enabledPlatforms,
   };
-
-  // GFG's solved count is deliberately maintained in the local config rather
-  // than fetched from an undocumented or fragile external source.
-  result.gfg = getConfiguredGFG(config);
 
   /* Fetch all enabled platforms in parallel */
   const tasks: Promise<void>[] = [];
@@ -159,6 +139,26 @@ export async function getCompetitiveProgrammingData(
             error instanceof Error ? error.message : "Unknown error";
           console.warn(`CodeChef fetch failed: ${message}`);
           result.errors.codechef = message;
+        }),
+    );
+  }
+
+  if (platforms.gfg.enabled && platforms.gfg.username) {
+    tasks.push(
+      fetchGFGProfile(
+        platforms.gfg.username,
+        platforms.gfg.displayName,
+        platforms.gfg.profileUrl,
+        bypassCache,
+      )
+        .then((profile) => {
+          result.gfg = profile;
+        })
+        .catch((error: unknown) => {
+          const message =
+            error instanceof Error ? error.message : "Unknown error";
+          console.warn(`GFG fetch failed: ${message}`);
+          result.errors.gfg = message;
         }),
     );
   }

@@ -1,5 +1,5 @@
 {
-  "_instructions": "Configure competitive programming platform handles here. Set enabled to true and provide a username to activate a platform. GFG totalSolved is manually maintained because this project has no reliable GFG integration. The website reads this file during build and rendering.",
+  "_instructions": "Configure competitive programming platform handles here. Set enabled to true and provide a username to activate a platform. The website reads this file during build and rendering.",
   "platforms": {
     "codeforces": {
       "username": "Sarthak_Devil",
@@ -14,10 +14,10 @@
       "enabled": true
     },
     "gfg": {
-      "username": "Sarthak Sethi",
+      "username": "sarthaksmaoj",
+      "displayName": "Sarthak Sethi",
       "enabled": true,
-      "totalSolved": null,
-      "profileUrl": "https://www.geeksforgeeks.org/"
+      "profileUrl": "https://www.geeksforgeeks.org/profile/sarthaksmaoj"
     }
   }
 }
