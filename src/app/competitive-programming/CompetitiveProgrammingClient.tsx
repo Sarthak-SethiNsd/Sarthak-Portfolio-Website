@@ -151,6 +151,14 @@ export function CompetitiveProgrammingClient({
   const mediumPct = lcTotal > 0 ? ((data.leetcode?.mediumSolved ?? 0) / lcTotal) * 100 : 0;
   const hardPct = lcTotal > 0 ? ((data.leetcode?.hardSolved ?? 0) / lcTotal) * 100 : 0;
 
+  /* Compute GeeksforGeeks solved percentages for custom horizontal status bars */
+  const gfgTotal = data.gfg?.totalSolved ?? 0;
+  const gfgSchoolPct = gfgTotal > 0 ? ((data.gfg?.schoolSolved ?? 0) / gfgTotal) * 100 : 0;
+  const gfgBasicPct = gfgTotal > 0 ? ((data.gfg?.basicSolved ?? 0) / gfgTotal) * 100 : 0;
+  const gfgEasyPct = gfgTotal > 0 ? ((data.gfg?.easySolved ?? 0) / gfgTotal) * 100 : 0;
+  const gfgMediumPct = gfgTotal > 0 ? ((data.gfg?.mediumSolved ?? 0) / gfgTotal) * 100 : 0;
+  const gfgHardPct = gfgTotal > 0 ? ((data.gfg?.hardSolved ?? 0) / gfgTotal) * 100 : 0;
+
   return (
     <>
       {/* Summary Card Dashboard */}
@@ -632,7 +640,78 @@ export function CompetitiveProgrammingClient({
                   {data.gfg?.totalSolved ?? "--"}
                 </span>
               </div>
+
+              <div className="cp-difficulty-box">
+                {Boolean(data.gfg?.schoolSolved && data.gfg.schoolSolved > 0) && (
+                  <div className="cp-difficulty-row">
+                    <span className="cp-diff-label school">School Solved</span>
+                    <div className="cp-progress-bg">
+                      <div
+                        className="cp-progress-bar school"
+                        style={{ width: `${gfgSchoolPct}%` }}
+                      ></div>
+                    </div>
+                    <span className="cp-diff-val">
+                      {data.gfg?.schoolSolved ?? "--"}
+                    </span>
+                  </div>
+                )}
+                <div className="cp-difficulty-row">
+                  <span className="cp-diff-label basic">Basic Solved</span>
+                  <div className="cp-progress-bg">
+                    <div
+                      className="cp-progress-bar basic"
+                      style={{ width: `${gfgBasicPct}%` }}
+                    ></div>
+                  </div>
+                  <span className="cp-diff-val">
+                    {data.gfg?.basicSolved ?? "--"}
+                  </span>
+                </div>
+                <div className="cp-difficulty-row">
+                  <span className="cp-diff-label easy">Easy Solved</span>
+                  <div className="cp-progress-bg">
+                    <div
+                      className="cp-progress-bar easy"
+                      style={{ width: `${gfgEasyPct}%` }}
+                    ></div>
+                  </div>
+                  <span className="cp-diff-val">
+                    {data.gfg?.easySolved ?? "--"}
+                  </span>
+                </div>
+                <div className="cp-difficulty-row">
+                  <span className="cp-diff-label medium">Medium Solved</span>
+                  <div className="cp-progress-bg">
+                    <div
+                      className="cp-progress-bar medium"
+                      style={{ width: `${gfgMediumPct}%` }}
+                    ></div>
+                  </div>
+                  <span className="cp-diff-val">
+                    {data.gfg?.mediumSolved ?? "--"}
+                  </span>
+                </div>
+                <div className="cp-difficulty-row">
+                  <span className="cp-diff-label hard">Hard Solved</span>
+                  <div className="cp-progress-bg">
+                    <div
+                      className="cp-progress-bar hard"
+                      style={{ width: `${gfgHardPct}%` }}
+                    ></div>
+                  </div>
+                  <span className="cp-diff-val">
+                    {data.gfg?.hardSolved ?? "--"}
+                  </span>
+                </div>
+              </div>
             </div>
+
+            {data.errors.gfg ? (
+              <div className="fallback-note" style={{ marginBottom: "12px", fontSize: "12px", color: "#ff375f" }}>
+                ⚠ {data.errors.gfg}
+              </div>
+            ) : null}
 
             <a
               className="primary-link cp-action-btn-active"

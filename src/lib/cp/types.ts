@@ -76,6 +76,11 @@ export interface GFGProfile {
   username: string;
   displayName: string;
   totalSolved: number;
+  schoolSolved: number;
+  basicSolved: number;
+  easySolved: number;
+  mediumSolved: number;
+  hardSolved: number;
   profileUrl: string;
 }
 

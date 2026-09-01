@@ -14,14 +14,21 @@ interface GFGStatsResponse {
   username?: string;
   data?: {
     totalSolved?: unknown;
+    byDifficulty?: {
+      school?: unknown;
+      basic?: unknown;
+      easy?: unknown;
+      medium?: unknown;
+      hard?: unknown;
+    };
   };
 }
 
 /**
- * Fetch a GFG user's current solved-problem count.
+ * Fetch a GFG user's current solved-problem count and difficulty breakdown.
  *
  * The provider's canonical `/{username}/stats` endpoint returns the
- * statistic at `data.totalSolved`.
+ * statistics at `data.totalSolved` and `data.byDifficulty`.
  */
 export async function fetchGFGProfile(
   username: string,
@@ -60,7 +67,27 @@ export async function fetchGFGProfile(
       throw new Error("GFG stats response did not include a valid totalSolved value");
     }
 
-    return { username, displayName, totalSolved, profileUrl };
+    const byDiff = payload.data?.byDifficulty;
+    const parseCount = (val: unknown): number =>
+      typeof val === "number" && Number.isInteger(val) && val >= 0 ? val : 0;
+
+    const schoolSolved = parseCount(byDiff?.school);
+    const basicSolved = parseCount(byDiff?.basic);
+    const easySolved = parseCount(byDiff?.easy);
+    const mediumSolved = parseCount(byDiff?.medium);
+    const hardSolved = parseCount(byDiff?.hard);
+
+    return {
+      username,
+      displayName,
+      totalSolved,
+      schoolSolved,
+      basicSolved,
+      easySolved,
+      mediumSolved,
+      hardSolved,
+      profileUrl,
+    };
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
       throw new Error("GFG stats request timed out");

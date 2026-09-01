@@ -344,6 +344,8 @@ button { font: inherit; }
   text-transform: uppercase;
   font-weight: 500;
 }
+.cp-diff-label.school { color: var(--cyan); }
+.cp-diff-label.basic { color: #84cc16; }
 .cp-diff-label.easy { color: var(--green); }
 .cp-diff-label.medium { color: #ffb800; }
 .cp-diff-label.hard { color: #ff375f; }
@@ -358,6 +360,8 @@ button { font: inherit; }
   height: 100%;
   border-radius: 999px;
 }
+.cp-progress-bar.school { background: var(--cyan); box-shadow: 0 0 8px rgba(69, 225, 216, 0.5); }
+.cp-progress-bar.basic { background: #84cc16; box-shadow: 0 0 8px rgba(132, 204, 22, 0.5); }
 .cp-progress-bar.easy { background: var(--green); box-shadow: 0 0 8px rgba(98, 230, 173, 0.5); }
 .cp-progress-bar.medium { background: #ffb800; box-shadow: 0 0 8px rgba(255, 184, 0, 0.5); }
 .cp-progress-bar.hard { background: #ff375f; box-shadow: 0 0 8px rgba(255, 55, 95, 0.5); }
