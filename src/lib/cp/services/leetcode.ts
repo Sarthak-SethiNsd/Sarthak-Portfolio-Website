@@ -26,9 +26,16 @@ interface LCContestHistory {
   ranking: number;
 }
 
+/** Returned by `userContestRanking` – contains the authoritative current rating. */
+interface LCContestRanking {
+  attendedContestsCount: number;
+  rating: number;
+}
+
 interface LCGraphQLResponse {
   data?: {
     matchedUser?: LCMatchedUser;
+    userContestRanking?: LCContestRanking | null;
     userContestRankingHistory?: LCContestHistory[] | null;
   };
   errors?: Array<{ message: string }>;
@@ -43,12 +50,8 @@ const LEETCODE_API_URL = "https://leetcode.com/graphql";
  *
  * Uses the official GraphQL endpoint with a combined query for:
  * - Submission statistics (total, easy, medium, hard solved)
- * - Contest ranking history (rating, attended count)
- *
- * NOTE: `userContestRanking` returns null when globalRanking is locked
- * (fewer than 6 contests attended). We use `userContestRankingHistory`
- * instead, which always returns per-contest data, and derive rating and
- * attendedContestsCount from it directly.
+ * - `userContestRanking` — the authoritative current contest rating
+ * - `userContestRankingHistory` — used only to derive the attended count
  *
  * @throws Error when the GraphQL endpoint returns errors or the username is not found.
  */
@@ -66,6 +69,10 @@ export async function fetchLeetCodeProfile(
             count
           }
         }
+      }
+      userContestRanking(username: $username) {
+        attendedContestsCount
+        rating
       }
       userContestRankingHistory(username: $username) {
         attended
@@ -123,23 +130,28 @@ export async function fetchLeetCodeProfile(
     if (item.difficulty === "Hard") hardSolved = item.count;
   });
 
-  /* Derive contest stats from per-contest history.
+  /* Derive contest stats.
    *
-   * `userContestRanking` is null for users with < 6 contests (LeetCode
-   * deliberately locks both the global ranking AND the rating field in that
-   * response).  `userContestRankingHistory[].rating` is the PRE-CONTEST
-   * baseline rating (always 1500 for new users), NOT the post-contest
-   * updated rating — so using it would display a wrong value.
+   * `userContestRanking` returns the authoritative current rating when the
+   * user has attended at least one rated contest whose results have been
+   * processed.  We round to the nearest integer to match the number shown
+   * on the LeetCode profile page.
    *
-   * We therefore:
-   *  - Derive contestsAttended from the count of `attended === true` entries
-   *    in the history (this is always accurate regardless of ranking status).
-   *  - Set contestRating to null, which the UI renders as "N/A" with a lock
-   *    indicator, until the user attends 6+ contests and globalRanking unlocks.
+   * `userContestRanking` may be null if the account has never participated in
+   * a rated contest; in that case we fall back to null and the UI renders "N/A".
+   *
+   * `userContestRankingHistory[].rating` is deliberately NOT used here because
+   * it is the PRE-contest baseline entry (always 1500 for new participants),
+   * not the final post-contest adjusted rating.
    */
   const history = payload.data?.userContestRankingHistory ?? [];
   const contestsAttended = history.filter((entry) => entry.attended).length;
-  const contestRating: number | null = null;
+
+  const rawRating = payload.data?.userContestRanking?.rating;
+  const contestRating: number | null =
+    typeof rawRating === "number" && isFinite(rawRating)
+      ? Math.round(rawRating)
+      : null;
 
   return {
     username: matchedUser.username,

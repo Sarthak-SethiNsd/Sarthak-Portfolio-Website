@@ -1,5 +1,5 @@
 {
-  "lastSuccessTimestamp": 1788230225226,
+  "lastSuccessTimestamp": 1791178449342,
   "data": {
     "codeforces": {
       "username": "Sarthak_Devil",
@@ -9,39 +9,39 @@
       "highestRank": "newbie",
       "totalSolved": 125,
       "profileUrl": "https://codeforces.com/profile/Sarthak_Devil",
-      "lastUpdated": "2026-09-01T02:37:04.663Z",
+      "lastUpdated": "2026-10-05T05:34:04.627Z",
       "contestsAttended": 14
     },
     "leetcode": {
       "username": "0KVODnQEQ7",
-      "totalSolved": 171,
-      "easySolved": 110,
-      "mediumSolved": 60,
+      "totalSolved": 199,
+      "easySolved": 122,
+      "mediumSolved": 76,
       "hardSolved": 1,
-      "contestRating": null,
+      "contestRating": 1425,
       "profileUrl": "https://leetcode.com/u/0KVODnQEQ7",
-      "lastUpdated": "2026-09-01T02:37:04.736Z",
-      "contestsAttended": 5
+      "lastUpdated": "2026-10-05T05:34:04.628Z",
+      "contestsAttended": 7
     },
     "codechef": {
       "username": "sarthak24sethi",
-      "currentRating": 1423,
-      "highestRating": 1423,
+      "currentRating": 1406,
+      "highestRating": 1438,
       "stars": "2★",
-      "globalRank": "38858",
-      "totalSolved": 49,
+      "globalRank": "43547",
+      "totalSolved": 58,
       "profileUrl": "https://www.codechef.com/users/sarthak24sethi",
-      "lastUpdated": "2026-09-01T02:37:04.743Z",
-      "contestsAttended": 11
+      "lastUpdated": "2026-10-05T05:34:04.717Z",
+      "contestsAttended": 14
     },
     "gfg": {
       "username": "sarthaksmaoj",
       "displayName": "Sarthak Sethi",
-      "totalSolved": 47,
+      "totalSolved": 49,
       "schoolSolved": 0,
-      "basicSolved": 8,
+      "basicSolved": 9,
       "easySolved": 16,
-      "mediumSolved": 21,
+      "mediumSolved": 22,
       "hardSolved": 2,
       "profileUrl": "https://www.geeksforgeeks.org/profile/sarthaksmaoj"
     },
@@ -52,6 +52,6 @@
       "gfg"
     ],
     "errors": {},
-    "fetchedAt": "2026-09-01T02:37:05.226Z"
+    "fetchedAt": "2026-10-05T05:34:09.342Z"
   }
 }
